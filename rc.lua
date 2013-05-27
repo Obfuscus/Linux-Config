@@ -56,11 +56,11 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -90,7 +90,7 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-settings_menu   = {
+settings_menu 	= {
 		   { "Screens", "arandr"}
 		  }
 system_menu   	= {
@@ -109,15 +109,17 @@ tools_menu	= {
 top_menu 	= awful.menu({ items = {
 					{ "Chromium", "chromium %U"},
 					{ "Terminal", terminal},
-					{ "Settings", settings_menu},
 					{ "System", system_menu },
+					{ "Settings", settings_menu},
 					{ "Internet", internet_menu },
 					{ "Tools", tools_menu}
                                        }
                       	    })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = top_menu })
+--mylauncher = awful.widget.launcher({ 
+--                                    image = beautiful.awesome_icon,
+--                                    menu = top_menu 
+--                                  })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -125,7 +127,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+--mytextclock = awful.widget.textclock()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -186,8 +188,6 @@ for s = 1, screen.count() do
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
-    -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
@@ -197,21 +197,12 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
-    left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
-
-    -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
     layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)
 
     mywibox[s]:set_widget(layout)
 end
