@@ -12,23 +12,23 @@ theme.wallpaper = "/home/dylan/Pictures/Backgrounds/Color on Black/Black Cables 
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "monospace 10"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
-theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
-theme.bg_urgent  = "#3F3F3F"
+theme.fg_normal  = "#00CC00"  --Green
+theme.fg_focus   = "#FFFFFF"	--White
+theme.fg_urgent  = "#FF0000"	--Bright Red
+theme.bg_normal  = "#000000"	--Black
+theme.bg_focus   = "#000000"	--Black
+theme.bg_urgent  = "#000000"	--Black
 theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.border_width  = 2
-theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#6F6F6F"
-theme.border_marked = "#CC9393"
+theme.border_width  = 10
+theme.border_normal = "default"
+theme.border_focus  = "default"
+theme.border_marked = "default"
 -- }}}
 
 -- {{{ Titlebars
